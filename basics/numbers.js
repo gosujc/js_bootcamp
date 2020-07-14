@@ -1,3 +1,17 @@
-let num = 5.5 - -1;
+let studentScore = 41
+let maxScore = 100
 
-console.log(num);
+let percent = (studentScore / maxScore ) * 100;
+
+
+
+console.log(percent) // print the num
+
+// Challenge Area
+
+// studentScore = 18 
+// maxScore = 20 
+// percent  90 
+
+
+// print the percent
