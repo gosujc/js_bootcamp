@@ -22,5 +22,5 @@ let gradeCalc = function (studentScore, totalPossibleScore = 100) {
     return `You got a ${score}% that's a ${letterGrade}.`
 }
 
-let grade = gradeCalc(9, 20)
+let grade = gradeCalc(18, 20)
 console.log(grade)
