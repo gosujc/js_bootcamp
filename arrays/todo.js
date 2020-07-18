@@ -1,16 +1,30 @@
 
-const todos = ['Walk the dog', 'Eat dinner', 'Workout', 'Wash the dishes', 'Hangout w/ friends']
+const todos = ['Walk the dog', 'Eat dinner', 'Workout', 'Wash the dishes']
 
 // Delete the 3rd item
 // Add a new item onto the end
 // Remove the first item from the list
 
 
-todos.splice(2, 1)
-todos.push('Watch a movie')
-todos.shift()
+//todos.splice(2, 1)
+//todos.push('Watch a movie')
+//todos.shift()
 
 
-console.log(`You have ${todos.length} todos!`)
-console.log(todos)
+// console.log(`You have ${todos.length} todos!`)
 
+// 1. The first item.
+// 2. The second item.
+
+
+todos.forEach(function (item, index) {
+
+    const num = index + 1
+
+    console.log(`${num}. ${item}.`)
+})
+
+for (let count = 0; count <= 4; count++) {
+    
+    console.log(`${num} ${todos[count]}`)
+}
