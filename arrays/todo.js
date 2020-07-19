@@ -1,5 +1,5 @@
 
-const todos = ['Walk the dog', 'Eat dinner', 'Workout', 'Wash the dishes']
+const todos = ['Walk the dog', 'Eat dinner', 'Workout', 'Clean the car', 'Wash the dishes']
 
 // Delete the 3rd item
 // Add a new item onto the end
@@ -24,7 +24,3 @@ todos.forEach(function (item, index) {
     console.log(`${num}. ${item}.`)
 })
 
-for (let count = 0; count <= 4; count++) {
-    
-    console.log(`${num} ${todos[count]}`)
-}
