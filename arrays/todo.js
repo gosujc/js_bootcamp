@@ -1,26 +1,33 @@
+const todos = [ {
+    text: 'Order cat food',
+    completed: true
+}, {
+    text: 'Clean kitchen',
+    completed: false
+}, {
+    text: 'Buy food',
+    completed: true
+}, {
+    text: 'Do work',
+    completed: false
+}, {
+    text: 'Exercise',
+    completed: true
+}]
 
-const todos = ['Walk the dog', 'Eat dinner', 'Workout', 'Clean the car', 'Wash the dishes']
+const deleteTodo = function (todos, textTodo) {
+    const index = todos.indexOf (function (todo) {
+        return todo.text.toLowerCase () === textTodo.toLowerCase ()
+    })
 
-// Delete the 3rd item
-// Add a new item onto the end
-// Remove the first item from the list
-
-
-//todos.splice(2, 1)
-//todos.push('Watch a movie')
-//todos.shift()
-
-
-// console.log(`You have ${todos.length} todos!`)
-
-// 1. The first item.
-// 2. The second item.
+    if (index > -1) {
+        todos.splice (index, 1)
+    }
+}
 
 
-todos.forEach(function (item, index) {
+// 1. Convert array to array of objects - > text, completed property 
+// 2. Create function to remove a todo by text value. 
 
-    const num = index + 1
-
-    console.log(`${num}. ${item}.`)
-})
-
+deleteTodo(todos, '!!buy food') // make case insesitive
+console.log(todos)
