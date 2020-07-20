@@ -21,7 +21,7 @@ const deleteTodo = function (todos, textTodo) {
     })
 
     if (index > -1) {
-        todos.splice (index, 1)
+        todos.splice (index, 1) // study this part A LOT!!!S
     }
 }
 
@@ -29,5 +29,5 @@ const deleteTodo = function (todos, textTodo) {
 // 1. Convert array to array of objects - > text, completed property 
 // 2. Create function to remove a todo by text value. 
 
-deleteTodo(todos, '!!buy food') // make case insesitive
+deleteTodo(todos, 'buy food') // make case insesitive
 console.log(todos)
