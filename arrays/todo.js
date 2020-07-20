@@ -16,14 +16,14 @@ const todos = [ {
 }]
 
 const deleteTodo = function (todos, textTodo) {
-    const index = todos.indexOf (function (todo) {
+    const index = todos.findIndex (function (todo) {
         return todo.text.toLowerCase () === textTodo.toLowerCase ()
     })
-
+    
     if (index > -1) {
-        todos.splice (index, 1) // study this part A LOT!!!S
+        todos.splice (index, 1)
     }
-}
+}   
 
 
 // 1. Convert array to array of objects - > text, completed property 
