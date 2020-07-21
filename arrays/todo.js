@@ -37,7 +37,21 @@ const getThingsToDo = function (todos) { // trying to "return" a new array
     })
 }
 
+const sortTodos = function (todos) {
+    todos.sort (function (a, b) {
+        if (a.completed === false && b.completed === true) {
+            return -1
+        } else if (!b.completed && a.completed) {
+            return 1
+        } else {
+            return 0
+        }
+    })
+}
+
+sortTodos(todos)
+console.log(todos)
 
 // Use filter to get a list of the todos that have a completed value of false. 
 
-console.log(getThingsToDo(todos, false))
+// console.log(getThingsToDo(todos, false))
