@@ -17,10 +17,10 @@ const findNote = function (notes, noteTitle) {
 }
 
 const findNotes = function (notes, query) {
-     return notes.filter (function (note, index) { 
-        const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase())
-        const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase())
-        return isTitleMatch || isBodyMatch
+     return notes.filter (function (notes, index) { // passing a function in as an argument. // this returns a new array due to .filter 
+        const isTitleMatch = notes.title.toLowerCase().includes(query.toLowerCase()) // it's checking to see if your notes array includes my query. // It returns true/false BECAUSE of the includes method. 
+        const isBodyMatch = notes.body.toLowerCase().includes(query.toLowerCase())
+        return isTitleMatch || isBodyMatch // returns boolean
     })
 
 }
