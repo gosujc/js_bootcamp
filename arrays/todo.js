@@ -32,14 +32,14 @@ const deleteTodo = function (todos, textTodo) {
 // console.log(todos)
 
 const getThingsToDo = function (todos) { // trying to "return" a new array
-    return todos.filter(function (todo, index) {
+    return todos.filter(function (todo, index) { // todo is one object from my array. 
         return todo.completed === false
     })
 }
 
 const sortTodos = function (todos) {
     todos.sort (function (a, b) {
-        if (a.completed === false && b.completed === true) {
+        if (a.completed === false && b.completed === true) { // there's two expressions, so if a.completed is true and b.completed is true then the whole expression evalutes to true. //brush up on logical operators. 
             return -1
         } else if (!b.completed && a.completed) {
             return 1
