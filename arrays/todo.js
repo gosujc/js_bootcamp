@@ -1,9 +1,9 @@
 const todos = [ {
     text: 'Order cat food',
-    completed: false
+    completed: true
 }, {
     text: 'Clean kitchen',
-    completed: true
+    completed: false
 }, {
     text: 'Buy food',
     completed: true
@@ -28,8 +28,8 @@ const deleteTodo = function (todos, textTodo) {
 // 1. Convert array to array of objects - > text, completed property 
 // 2. Create function to remove a todo by text value. 
 
-// deleteTodo(todos, 'buy food') // make case insesitive
-// console.log(todos)
+ deleteTodo(todos, 'buy food') // make case insesitive
+ console.log(todos)
 
 const getThingsToDo = function (todos) { // trying to "return" a new array
     return todos.filter(function (todo, index) { // todo is one object from my array. 
@@ -37,9 +37,11 @@ const getThingsToDo = function (todos) { // trying to "return" a new array
     })
 }
 
-const sortTodos = function (todos) {
+// Put all of our false completed on top of the array printed. 
+
+const sortTodos = function (todos) { 
     todos.sort (function (a, b) {
-        if (a.completed === false && b.completed === true) { // there's two expressions, so if a.completed is true and b.completed is true then the whole expression evalutes to true. //brush up on logical operators. 
+        if (!a.completed && b.completed) {
             return -1
         } else if (!b.completed && a.completed) {
             return 1
@@ -49,9 +51,9 @@ const sortTodos = function (todos) {
     })
 }
 
-sortTodos(todos)
-console.log(todos)
+// sortTodos(todos)
+// console.log(todos)
 
 // Use filter to get a list of the todos that have a completed value of false. 
 
-// console.log(getThingsToDo(todos, false))
+console.log(getThingsToDo(todos, false))
