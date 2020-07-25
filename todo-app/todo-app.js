@@ -15,17 +15,20 @@ const todos = [ {
     completed: true
 }]
 
-const paragraphsTodo = todos.filter (function (text) {
-    if (todos.completed === false) {
-        return 
-    }
+const stillTodos = todos.filter (function (todo) {
+    return todo.completed === false
 })
-}
 
-console.log(paragraphsTodo)
+const newParagraph = document.createElement('p')
+newParagraph.textContent = `You have ${stillTodos.length} todos left`
+document.querySelector('body').appendChild(newParagraph)
 // You have 2 todos left (p element)
+
+todos.forEach(function (todo) {
+    const p = document.createElement('p')
+    p.textContent = todo.text
+    document.querySelector('body').appendChild(p)
+})
+
 // Add a p for each todo above (use text value)
 
-// const pTodos = document.createElement('p')
-// pTodos.textContent = `${getTodos}`
-// document.querySelector('body').appendChild(pTodos)
