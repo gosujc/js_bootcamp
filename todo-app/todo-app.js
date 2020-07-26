@@ -15,14 +15,17 @@ const todos = [ {
     completed: true
 }]
 
-const stillTodos = todos.filter (function (todo) {
-    return todo.completed === false
+const falsePara = todos.filter(function (todo) {
+    if (todo.completed === false) {
+        return todo.text
+    }
+    // or 
+    // return !todo.completed
 })
 
 const newParagraph = document.createElement('p')
-newParagraph.textContent = `You have ${stillTodos.length} todos left`
+newParagraph.textContent = `You have ${falsePara.length} todos left.`
 document.querySelector('body').appendChild(newParagraph)
-// You have 2 todos left (p element)
 
 todos.forEach(function (todo) {
     const p = document.createElement('p')
@@ -30,5 +33,6 @@ todos.forEach(function (todo) {
     document.querySelector('body').appendChild(p)
 })
 
+// You have 2 todos left (p element)
 // Add a p for each todo above (use text value)
 
