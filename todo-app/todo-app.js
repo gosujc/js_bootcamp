@@ -43,3 +43,8 @@ document.querySelector('#add-todo').addEventListener('click', function (e) {
     console.log('Add a new todo...')
 })
 
+// Listen for todo text change
+
+document.querySelector('#new-todo-text').addEventListener('input', function (e) {
+    console.log(e.target.value) //.target gives us access to the input to access it's value property. 
+})
