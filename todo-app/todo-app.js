@@ -1,3 +1,8 @@
+
+// 1. Set up a div container for todos
+// 2. Set up filters (searchText) and wire up a new filter input to change it. 
+// 3. Create a renderTodos function to render and rerender the latest filtered data. 
+
 const todos = [{
     text: 'Order cat food',
     completed: false
@@ -29,11 +34,11 @@ const renderTodos = function (todos, filters) {
     })
 
     document.querySelector('#todos').innerHTML = ''
-
+    
     const summary = document.createElement('h2')
     summary.textContent = `You have ${incompleteTodos.length} todos left`
     document.querySelector('#todos').appendChild(summary)
-
+    
     filteredTodos.forEach(function (todo) {
         const p = document.createElement('p')
         p.textContent = todo.text
@@ -53,7 +58,7 @@ document.querySelector('#new-todo-text').addEventListener('input', function (e) 
     console.log(e.target.value)
 })
 
-document.querySelector('#search-text').addEventListener('input', function (e) {
+document.querySelector('#new-search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
