@@ -1,9 +1,9 @@
-const todos = [ {
+const todos = [{
     text: 'Order cat food',
-    completed: true
+    completed: false
 }, {
     text: 'Clean kitchen',
-    completed: false
+    completed: true
 }, {
     text: 'Buy food',
     completed: true
@@ -15,40 +15,45 @@ const todos = [ {
     completed: true
 }]
 
-// 1. Set up a div container for todos
-// 2. Setup filters (searchText) and wire up a new filter input to change it.
-// 3. Create a renderTodos function to render and rerender the latest filetered data. 
-
-
-// Starts
-
 const filters = {
-    searchText = ''
+    searchText: ''
 }
 
-const renderedNotes = function (todos, filters) {
-    const filteredNotes = todos.filter(function (todo) {
+const renderTodos = function (todos, filters) {
+    const filteredTodos = todos.filter(function (todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+
+    const incompleteTodos = filteredTodos.filter(function (todo) {
+        return !todo.completed
     })
 
     document.querySelector('#todos').innerHTML = ''
 
-    filteredNotes.forEach(function (todo) {
-        const newText = document.createElement('p')
-        newText.textContent = todo.text
-        document.querySelector('#todos').appendChild(newText)
+    const summary = document.createElement('h2')
+    summary.textContent = `You have ${incompleteTodos.length} todos left`
+    document.querySelector('#todos').appendChild(summary)
+
+    filteredTodos.forEach(function (todo) {
+        const p = document.createElement('p')
+        p.textContent = todo.text
+        document.querySelector('#todos').appendChild(p)
     })
 }
 
-renderedNotes(todos, filters)
-// Ends
+renderTodos(todos, filters)
 
-// You have 2 todos left (p element)
-// Add a p for each todo above (use text value)
+// Listen for new todo creation
+document.querySelector('#add-todo').addEventListener('click', function (e) {
+    console.log('Add a new todo...')
+})
 
 // Listen for todo text change
-
 document.querySelector('#new-todo-text').addEventListener('input', function (e) {
+    console.log(e.target.value)
+})
+
+document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
-    renderedNotes(todos, filters)//.target gives us access to the input to access it's value property. 
+    renderTodos(todos, filters)
 })
