@@ -1,8 +1,3 @@
-
-// 1. Set up a div container for todos
-// 2. Set up filters (searchText) and wire up a new filter input to change it. 
-// 3. Create a renderTodos function to render and rerender the latest filtered data. 
-
 const todos = [{
     text: 'Order cat food',
     completed: false
@@ -48,17 +43,23 @@ const renderTodos = function (todos, filters) {
 
 renderTodos(todos, filters)
 
-// Listen for new todo creation
-document.querySelector('#add-todo').addEventListener('click', function (e) {
-    console.log('Add a new todo...')
-})
-
-// Listen for todo text change
-document.querySelector('#new-todo-text').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
-
 document.querySelector('#new-search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
+})
+
+// 1. Create a form with a single input for todo text.
+// 2. Setup and submit handler and cancel the default action.
+// 3. Add a new item to the todos array with that text data (complete value of false)
+// 4. Rerender the application. 
+// 5. Clear the input field value.
+
+document.querySelector('#add-todo').addEventListener('submit', function (e) {
+    e.preventDefault()
+    todos.push({
+        text: e.target.elements.text.value,
+        completed: false
+    })
+    renderTodos(todos, filters)
+    e.target.elements.text.value = ''
 })
