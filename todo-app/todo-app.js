@@ -21,8 +21,17 @@ const filters = {
 }
 
 const renderTodos = function (todos, filters) {
-    const filteredTodos = todos.filter(function (todo) {
+    let filteredTodos = todos.filter(function (todo) {
         return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+
+    filteredTodos = filteredTodos.filter(function (todo) {
+        return !filters.hideCompleted || todo.completed
+        // if (filters.hideCompleted) {
+        //     return !todo.completed
+        // } else {
+        //     return true
+        // }
     })
 
     const incompleteTodos = filteredTodos.filter(function (todo) {
@@ -40,8 +49,7 @@ const renderTodos = function (todos, filters) {
         p.textContent = todo.text
         document.querySelector('#todos').appendChild(p)
     })
-
- }
+}
 
 renderTodos(todos, filters)
 
@@ -66,5 +74,6 @@ document.querySelector('#add-todo').addEventListener('submit', function (e) {
 // 4. Setup renderTodos to remove completed items. 
 
 document.querySelector('#todo-cbox').addEventListener('change', function(e) {
-    s
+    filters.hideCompleted = e.target.checked // When the checkbox is not checked it's false thus the default is false because the checkbox is not checked. 
+    renderTodos(todos, filters)
 })
