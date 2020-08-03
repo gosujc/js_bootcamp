@@ -21,17 +21,10 @@ const filters = {
 }
 
 const renderTodos = function (todos, filters) {
-    let filteredTodos = todos.filter(function (todo) {
-        return todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
-
-    filteredTodos = filteredTodos.filter(function (todo) {
-        return !filters.hideCompleted || todo.completed
-        // if (filters.hideCompleted) {
-        //     return !todo.completed
-        // } else {
-        //     return true
-        // }
+    const filteredTodos = todos.filter(function (todo) {
+        const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
+        const hideCompletedMatch = !filters.hideCompleted || !todo.completed
+        return searchTextMatch && hideCompletedMatch
     })
 
     const incompleteTodos = filteredTodos.filter(function (todo) {
@@ -68,12 +61,13 @@ document.querySelector('#add-todo').addEventListener('submit', function (e) {
     e.target.elements.text.value = ''
 })
 
+document.querySelector('#hide-completed').addEventListener('change', function(e) {
+    filters.hideCompleted = e.target.checked
+    renderTodos(todos, filters)
+})
+
 // 1. Create a checkbox and setup event listner -> "hide completed"
 // 2. Create new hideCompleted filter (default false)
 // 3. Update hideCompleted an rerender list on checkbox change
 // 4. Setup renderTodos to remove completed items. 
 
-document.querySelector('#todo-cbox').addEventListener('change', function(e) {
-    filters.hideCompleted = e.target.checked // When the checkbox is not checked it's false thus the default is false because the checkbox is not checked. 
-    renderTodos(todos, filters)
-})
