@@ -1,3 +1,8 @@
+// 1. Add event handler to checkbox
+// 2. Modify the correct objects completed property -> toggleTodo
+// 3. Save and rerender
+
+
 // Fetch existing todos from localStorage 
 
 const getSavedTodos = function () {
@@ -15,6 +20,23 @@ if (todosJSON !== null) {
 const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
+
+// Remove todo from list
+
+const removeTodo = function (id) {
+    const todoIndex = todos.findIndex(function (todo) {
+        return todo.id === id 
+    })
+
+    if (todoIndex > -1) {
+        todos.splice(todoIndex, 1)
+    }
+}
+
+const toggleTodo = function (id) {
+    
+}
+
 
 // Render application todos based on filters
 
@@ -37,12 +59,6 @@ const renderTodos = function (todos, filters) {
     })
 }
 
-// 1. Setup a root div
-// 2. Setup and append a checkbox (set type attribute)
-// someNode.setAttribute('type', 'checkbox')
-// 3. Setup and append a span (set text)
-// 4. Setup and append a button
-
 // Get the DOM elements for an individual note
 
 const generateTodoDom = function (todo) {
@@ -53,7 +69,11 @@ const generateTodoDom = function (todo) {
     
     // Set Up Checkbox 
     checkBox.setAttribute('type', 'checkbox')
+    checkBox.checked = todo.completed
     todoDiv.appendChild(checkBox)
+    checkBox.addEventListener('change', function() {
+        toggleTodo(todo.id)
+    })
 
     // Set Up Span
     textTodo.textContent = todo.text
@@ -62,6 +82,11 @@ const generateTodoDom = function (todo) {
     // Set Up Button
     todoButton.textContent = 'x'
     todoDiv.appendChild(todoButton)
+    todoButton.addEventListener('click', function() {
+        removeTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
+    })
 
     return todoDiv
 }
