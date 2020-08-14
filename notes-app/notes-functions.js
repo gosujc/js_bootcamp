@@ -22,7 +22,6 @@ const removeNote = function (id) {
     }
 }
 
-
 // Save the notes to localStorage
 const saveNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes))
@@ -31,7 +30,7 @@ const saveNotes = function (notes) {
 // Generate the DOM structure for a note.
 const generateNoteDom = function (note) { 
     const noteEl = document.createElement('div')
-    const textEl = document.createElement('span')
+    const textEl = document.createElement('a')
     const button = document.createElement('button')
 
     // Setup the remove note button
@@ -44,12 +43,12 @@ const generateNoteDom = function (note) {
     })
 
     // Setup the note title text
+    textEl.setAttribute('href', `/edit.html#${note.id}`)
         if (note.title.length > 0) {
             textEl.textContent = note.title
         } else { 
             textEl.textContent = 'Unnamed Note'
         }
-
     noteEl.appendChild(textEl)
     return noteEl
 }

@@ -33,8 +33,16 @@ const removeTodo = function (id) {
     }
 }
 
+// Toggle the completed value for a Todo
+
 const toggleTodo = function (id) {
-    
+    const todo = todos.find(function(todo) {
+        return todo.id === id
+    })
+
+    if (todo.completed !== undefined) {
+        todo.completed = !todo.completed
+    }
 }
 
 
@@ -73,6 +81,8 @@ const generateTodoDom = function (todo) {
     todoDiv.appendChild(checkBox)
     checkBox.addEventListener('change', function() {
         toggleTodo(todo.id)
+        saveTodos(todos)
+        renderTodos(todos, filters)
     })
 
     // Set Up Span
