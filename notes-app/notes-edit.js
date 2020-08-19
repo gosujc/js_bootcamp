@@ -1,17 +1,32 @@
 const noteId = location.hash.substring(1)
 const notes = getSavedNotes()
+const noteTitle = document.querySelector('#note-title')
+const noteBody = document.querySelector('#note-body')
+const removeButton = document.querySelector('#remove-note')
+
 const note = notes.find(function (note) {
     return note.id === noteId
 })
-
-if (note === undefined) {
+if (note === undefined) { 
     location.assign('/index.html')
 }
 
-document.querySelector('#note-title').value = note.title
-document.querySelector('#note-body').value = note.body
+noteTitle.value = note.title
+noteBody.value = note.body
 
-// 1. Setup input event for title
-// 2. Update not object and save notes list
-// 3. Repeat steps 1-2 for body
-// 4. Setup a remove button that removes notes and sends users back to home page. 
+noteTitle.addEventListener('input', function(e) {
+    note.title = e.target.value
+    saveNotes(notes)
+})
+
+noteBody.addEventListener('input', function (e) {
+    note.body = e.target.value
+    saveNotes(notes)
+})
+
+removeButton.addEventListener('click', function (e) {
+   removeNote(note.id)
+   saveNotes(notes)
+   location.assign('/index.html')
+})
+
