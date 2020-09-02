@@ -8,11 +8,13 @@ renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
     const id = uuidv4()
-
+    const timestamp = moment().valueOf()
     notes.push({
         id: id,
         title: '',
-        body: ''
+        body: '',
+        createdAt: timestamp,
+        updatedAt: timestamp
     })
     saveNotes(notes)
     location.assign(`/edit.html#${id}`)
@@ -34,30 +36,6 @@ window.addEventListener('storage', function(e) {
     }
 })
 
-// Unix Epoch - January 1st 1970 00:00:00
-
-const now = new Date()
-const timestamp = now.getTime()
-
-const myDate = new Date(timestamp)
-console.log(myDate.getFullYear())
-
-// console.log(`Year: ${now.getFullYear()}`)
-// console.log(`Month: ${now.getMonth()}`)
-// console.log(`Day of Month: ${now.getDate()}`)
-// console.log(`Hours: ${now.getHours()}`)
-// console.log(`Minutes: ${now.getMinutes()}`)
-// console.log(`Seconds: ${now.getSeconds()}`)
-
-// 1. Create two dates in the past (use string for Date)
-
-const dateOne = new Date('February 14 1993 09:40:27')
-const dateTwo = new Date('December 25 2007 10:45:21')
-// 2. Get time stamps for both
-const stampOne = dateOne.getTime()
-const stampTwo = dateTwo.getTime()
-
-// 3. Figure out which is first and print its time (use toString)
-if (stampOne > stampTwo) { 
-    return stampOne
-} else if {}
+// 1. Add createdAt and updatedAt to the new notes (store timestamp)
+// 2. Update updatedAt when someone edits a title or body
+// 3. Delete all old notes before testing 
