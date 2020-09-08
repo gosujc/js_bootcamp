@@ -15,17 +15,19 @@ if (note === undefined) {
 
 noteTitle.value = note.title
 noteBody.value = note.body
-lastEdited.textContent = `Last edited ${moment(note.updatedAt).fromNow()}`
+lastEdited.textContent = generateLastEdited(note.updatedAt)
 
 noteTitle.addEventListener('input', function(e) {
     note.title = e.target.value
     note.updatedAt = moment().valueOf()
+    lastEdited.textContent = generateLastEdited(note.updatedAt)
     saveNotes(notes)
 })
 
 noteBody.addEventListener('input', function (e) {
     note.body = e.target.value
     note.updatedAt = moment().valueOf()
+    lastEdited.textContent = generateLastEdited(note.updatedAt)
     saveNotes(notes)
 })
 
@@ -47,6 +49,7 @@ window.addEventListener('storage', function(e) {
 
     noteTitle.value = note.title
     noteBody.value = note.body
+    lastEdited.textContent = generateLastEdited(note.updatedAt)
    }
 })
 
