@@ -1,6 +1,3 @@
-// 1. Add event handler to checkbox
-// 2. Modify the correct objects completed property -> toggleTodo
-// 3. Save and rerender
 
 
 // Fetch existing todos from localStorage 
@@ -8,7 +5,11 @@
 const getSavedTodos = () => {
     const todosJSON = localStorage.getItem('todos')
 
-    return todosJSON !== null ? JSON.parse(todosJSON) : []
+    try {
+        return todosJSON !== null ? JSON.parse(todosJSON) : []
+    } catch (e) {
+        return []
+    }
 }
 
 // Save todos to localStorage
