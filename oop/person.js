@@ -1,37 +1,61 @@
 // Prototypal Inheritance
+// myPerson -> Person.prototype -> Object.prototype -> null
 
-const Person = function (firstName, lastName, age, likes = []) { 
-    this.firstName = firstName
-    this.lastName = lastName
-    this.age = age
-    this.likes = likes
-}
+class Person {
+    constructor(firstName, lastName, age, likes = []) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.age = age
+        this.likes = likes
+    }
+    getBio() {
+        let bio = `${this.firstName} is ${this.age}.`
 
-Person.prototype.getBio = function () {
-    let bio = `${this.firstName} is ${this.age}.`
-
-    this.likes.forEach((like) => {
+        this.likes.forEach((like) => {
         bio +=  ` ${this.firstName} likes ${like}.`
-    })
-
-    return bio 
-    
+        })
+        return bio 
+    }
+    set fullName(fullName) {
+        const names = fullName.split(' ') // The space "SPLITS" it at the space
+        this.firstName = names[0]
+        this.lastName = names[1]
+    }
+    get fullName() { 
+        return `${this.firstName} ${this.lastName}`
+    }
 }
 
-Person.prototype.setName = function (fullName) {
-    const names = fullName.split(' ') // The space "SPLITS" it at the space
-    this.firstName = names[0]
-    this.lastName = names[1]
+
+class Student extends Person {
+    constructor(firstName, lastName, age, grade, likes) {
+        super(firstName, lastName, age, likes)
+        this.grade = grade
+    }
+    getBio() {
+        const status = this.grade >= 70 ? "passing" : "failing"
+        return `${this.firstName} is ${status} the class.`
+    }
+    updateGrade(change) {
+        this.grade = this.grade + change
+    }
+
 }
 
-const me = new Person('Andrew', 'Mead', 27, ['Teaching', 'Biking'])
-
-me.getBio = function () {
-    return 'This is fake'
+class Employee extends Person{
+    constructor(firstName, lastName, age, position, likes = []) {
+        super(firstName, lastName, age, likes)
+        this.position = position
+    }
+    getBio() {
+        return `${this.fullName} is a ${this.position}.`
+        // Andrew is a Teacher
+    }
+    getYearsLeft () {
+        return 65 - this.age
+    }
 }
 
-me.setName('Alexis Turner')
+const me = new Employee ("Andrew", "Mead", 27, 'Teacher', [])
+me.fullName = "Clancey Turner"
 console.log(me.getBio())
-
-const person2 = new Person('Brian', 'Hawk', 51)
-console.log(person2.getBio())
